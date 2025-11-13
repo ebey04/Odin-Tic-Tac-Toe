@@ -2,6 +2,10 @@
 
 let gameBoard = [];
 
+function getSquare(index) {
+    return gameBoard[index];
+}
+
 /* GAME CONTROLLER SECTION */
 
 let gameOver = false;
