@@ -1,5 +1,6 @@
 /* GAMEBOARD SECTION */
 
+let gameBoard = [];
 
 /* GAME CONTROLLER SECTION */
 
