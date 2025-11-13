@@ -93,7 +93,15 @@ squares.forEach(cell => {
     });
 });
 
-resetBtn.addEventListener
+resetBtn.addEventListener('click', () => {
+    resetBoard();      
+    clearBoardUI();      
+    gameOver = false;    
+    currentPlayer = playerOne;  
+    showMessage("Player 1's turn");
+    hideResetButton();
+});
+
 
 //Send index to Game Controller Section 
 
