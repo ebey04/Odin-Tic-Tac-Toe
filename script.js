@@ -72,6 +72,11 @@ function playerTurn(index) {
 
 //Pull in HTML elements
 
+const gameboard = document.getElementById("gameboard");
+const square = document.querySelectorAll('.square');
+const messageArea = document.getElementById("messages");
+const resetBtn = document.getElementById("resetBtn");
+
 //Event Listeners
 
 //Send index to Game Controller Section 
