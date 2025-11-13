@@ -104,3 +104,13 @@ function showMessage(text) {
 function clearBoardUI() {
     squares.textContent = "";
 }
+
+/* PLAYER SECTION */
+
+// player factory to create player objects (2) - name, token
+
+const createPlayer = (name, token) => {
+    return {name, token};
+}
+
+let currentPlayer = playerOne; 
