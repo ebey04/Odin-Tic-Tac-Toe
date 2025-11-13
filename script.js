@@ -1,8 +1,10 @@
-/* GAMEBOARD SECTION */
+/* =========================
+   GAMEBOARD MODULE (IIFE)
+   ========================= */
 
 const GameBoard = (function() {
-    let gameBoard = ["","",""];
-    
+    let gameBoard = ["","","","","","","","",""];
+
     function setSquare(index, token) {
         gameBoard[index] = token;
     }
@@ -12,18 +14,26 @@ const GameBoard = (function() {
     }
 
     function resetBoard() {
-        gameBoard = ["","",""];
+        gameBoard = ["","","","","","","","",""];
+    }
+
+    function boardIncludesEmpty() {
+        return gameBoard.includes("");
     }
 
     return {
         setSquare,
         getSquare,
-        resetBoard
+        resetBoard,
+        boardIncludesEmpty
     };
 })();
 
 
-/* PLAYER SECTION */
+
+/* =========================
+   PLAYER MODULE (IIFE)
+   ========================= */
 
 const Player = (function() {
 
@@ -40,7 +50,10 @@ const Player = (function() {
 })();
 
 
-/* GAME CONTROLLER SECTION */
+
+/* =========================
+   GAME CONTROLLER MODULE (IIFE)
+   ========================= */
 
 const GameController = (function() {
 
@@ -62,19 +75,19 @@ const GameController = (function() {
         currentPlayer = currentPlayer === Player.playerOne ? Player.playerTwo : Player.playerOne;
     }
 
-
     function playerTurn(index) {
         if (gameOver) return;
 
+        // Prevent overwriting filled square
         if (GameBoard.getSquare(index) !== "") return;
 
+        // Place token
         GameBoard.setSquare(index, currentPlayer.token);
         DisplayController.updateSquareUI(index, currentPlayer.token);
 
+        // Check for win
         for (let pattern of winningPatterns) {
-            let a = pattern[0];
-            let b = pattern[1];
-            let c = pattern[2];
+            let [a, b, c] = pattern;
 
             if (
                 GameBoard.getSquare(a) === currentPlayer.token &&
@@ -88,6 +101,7 @@ const GameController = (function() {
             }
         }
 
+        // Check for tie
         if (!GameBoard.boardIncludesEmpty()) {
             gameOver = true;
             DisplayController.showMessage("It's a tie!");
@@ -95,16 +109,15 @@ const GameController = (function() {
             return;
         }
 
+        // Continue game
         switchPlayer();
         DisplayController.showMessage(`${currentPlayer.name}'s turn`);
     }
-
 
     function resetGame() {
         gameOver = false;
         currentPlayer = Player.playerOne;
     }
-
 
     return {
         playerTurn,
@@ -116,7 +129,9 @@ const GameController = (function() {
 
 
 
-/*DISPLAY CONTROLLER SECTION */
+/* =========================
+   DISPLAY CONTROLLER MODULE (IIFE)
+   ========================= */
 
 const DisplayController = (function() {
 
@@ -126,22 +141,7 @@ const DisplayController = (function() {
     const resetBtn = document.getElementById("resetBtn");
 
 
-    squares.forEach(cell => {
-        cell.addEventListener('click', () => {
-            let index = Number(cell.dataset.index);
-            GameController.playerTurn(index);
-        });
-    });
-
-    resetBtn.addEventListener('click', () => {
-        GameBoard.resetBoard();          
-        clearBoardUI();                  
-        GameController.resetGame();        
-        showMessage("Player 1's turn");  
-        hideResetButton();            
-    });
-
-
+    /* --- PRIVATE UI HELPERS (must come before listeners) --- */
 
     function updateSquareUI(index, token) {
         squares[index].textContent = token;
@@ -163,6 +163,26 @@ const DisplayController = (function() {
         resetBtn.classList.remove('visible');
     }
 
+
+    /* --- EVENT LISTENERS --- */
+
+    squares.forEach(cell => {
+        cell.addEventListener('click', () => {
+            let index = Number(cell.dataset.index);
+            GameController.playerTurn(index);
+        });
+    });
+
+    resetBtn.addEventListener('click', () => {
+        GameBoard.resetBoard();
+        clearBoardUI();
+        GameController.resetGame();
+        showMessage("Player 1's turn");
+        hideResetButton();
+    });
+
+
+    /* --- PUBLIC API --- */
 
     return {
         updateSquareUI,
