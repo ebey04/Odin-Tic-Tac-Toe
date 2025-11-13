@@ -78,14 +78,11 @@ const GameController = (function() {
     function playerTurn(index) {
         if (gameOver) return;
 
-        // Prevent overwriting filled square
         if (GameBoard.getSquare(index) !== "") return;
 
-        // Place token
         GameBoard.setSquare(index, currentPlayer.token);
         DisplayController.updateSquareUI(index, currentPlayer.token);
 
-        // Check for win
         for (let pattern of winningPatterns) {
             let [a, b, c] = pattern;
 
@@ -101,7 +98,6 @@ const GameController = (function() {
             }
         }
 
-        // Check for tie
         if (!GameBoard.boardIncludesEmpty()) {
             gameOver = true;
             DisplayController.showMessage("It's a tie!");
@@ -109,7 +105,6 @@ const GameController = (function() {
             return;
         }
 
-        // Continue game
         switchPlayer();
         DisplayController.showMessage(`${currentPlayer.name}'s turn`);
     }
@@ -128,7 +123,6 @@ const GameController = (function() {
 })();
 
 
-
 /* =========================
    DISPLAY CONTROLLER MODULE (IIFE)
    ========================= */
@@ -140,8 +134,6 @@ const DisplayController = (function() {
     const messageArea = document.getElementById("messages");
     const resetBtn = document.getElementById("resetBtn");
 
-
-    /* --- PRIVATE UI HELPERS (must come before listeners) --- */
 
     function updateSquareUI(index, token) {
         squares[index].textContent = token;
@@ -163,7 +155,6 @@ const DisplayController = (function() {
         resetBtn.classList.remove('visible');
     }
 
-
     /* --- EVENT LISTENERS --- */
 
     squares.forEach(cell => {
@@ -180,7 +171,6 @@ const DisplayController = (function() {
         showMessage("Player 1's turn");
         hideResetButton();
     });
-
 
     /* --- PUBLIC API --- */
 
