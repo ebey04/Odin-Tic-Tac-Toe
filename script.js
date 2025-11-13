@@ -100,7 +100,6 @@ const GameController = (function() {
     }
 
 
-    // **RESET FUNCTION (needed inside this module)**
     function resetGame() {
         gameOver = false;
         currentPlayer = Player.playerOne;
@@ -119,54 +118,58 @@ const GameController = (function() {
 
 /*DISPLAY CONTROLLER SECTION */
 
-const boardGame = document.getElementById("gameboard");
-const squares = document.querySelectorAll('.square');
-const messageArea = document.getElementById("messages");
-const resetBtn = document.getElementById("resetBtn");
+const DisplayController = (function() {
 
-//Event Listeners
+    const boardGame = document.getElementById("gameboard");
+    const squares = document.querySelectorAll('.square');
+    const messageArea = document.getElementById("messages");
+    const resetBtn = document.getElementById("resetBtn");
 
-squares.forEach(cell => {
-    cell.addEventListener('click', () => {
-        let index = cell.dataset.index;
-        playerTurn(index);
+
+    squares.forEach(cell => {
+        cell.addEventListener('click', () => {
+            let index = Number(cell.dataset.index);
+            GameController.playerTurn(index);
+        });
     });
-});
 
-resetBtn.addEventListener('click', () => {
-    resetBoard();      
-    clearBoardUI();      
-    gameOver = false;    
-    currentPlayer = playerOne;  
-    showMessage("Player 1's turn");
-    hideResetButton();
-});
-
-
-//Send index to Game Controller Section 
+    resetBtn.addEventListener('click', () => {
+        GameBoard.resetBoard();          
+        clearBoardUI();                  
+        GameController.resetGame();        
+        showMessage("Player 1's turn");  
+        hideResetButton();            
+    });
 
 
 
-//Update visuals
+    function updateSquareUI(index, token) {
+        squares[index].textContent = token;
+    }
 
-function showResetButton() {
-    resetBtn.classList.add('visible');
-}
+    function clearBoardUI() {
+        squares.forEach(cell => cell.textContent = "");
+    }
 
-function hideResetButton() {
-    resetBtn.classList.remove('visible');
-}
+    function showMessage(text) {
+        messageArea.textContent = text;
+    }
 
-function updateSquareUI(index, token) {
-    squares[index].textContent = token;
-}
+    function showResetButton() {
+        resetBtn.classList.add('visible');
+    }
+
+    function hideResetButton() {
+        resetBtn.classList.remove('visible');
+    }
 
 
-function showMessage(text) {
-    messageArea.textContent = text;
-}
+    return {
+        updateSquareUI,
+        clearBoardUI,
+        showMessage,
+        showResetButton,
+        hideResetButton
+    };
 
-function clearBoardUI() {
-    squares.forEach(cell => cell.textContent = "");
-
-}
+})();
