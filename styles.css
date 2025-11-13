@@ -1,7 +1,95 @@
+/* ===== GLOBAL RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    background: #f4f4f9;
+    padding: 2rem;
+    text-align: center;
+    color: #333;
+}
+
+/* ===== HEADER ===== */
+header {
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* ===== GAMEBOARD GRID ===== */
+#gameboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 300px;
+    height: 300px;
+    margin: 1.5rem auto;
+    gap: 6px;              
+}
+
+/* ===== GAME SQUARES ===== */
+.square {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 0 3px #333 inset;
+    font-size: 3rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    outline: none;
+}
+
+.square:hover {
+    background: #e8e8e8;
+}
+
+.square:focus {
+    outline: 3px solid #7755ff;
+    outline-offset: -3px;
+}
+
+/* ===== MESSAGE AREA ===== */
+#messages {
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    min-height: 2rem; 
+}
+
+/* ===== RESET BUTTON ===== */
 #resetBtn {
-    display: none;
+    margin: 2rem auto 0 auto;
+    padding: 0.6rem 1.3rem;
+    font-size: 1.2rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: none; /* hidden until visible class is added */
 }
 
 #resetBtn.visible {
-    display: block;
+    display: inline-block;
+}
+
+#resetBtn:hover {
+    background: #555;
+}
+
+#resetBtn:active {
+    background: #222;
 }
