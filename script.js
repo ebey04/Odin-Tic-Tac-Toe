@@ -16,6 +16,17 @@ function resetBoard() {
 ;
 }
 
+
+/* PLAYER SECTION */
+
+const createPlayer = (name, token) => {
+    return {name, token};
+}
+
+const playerOne = createPlayer("Player 1", "X");
+const playerTwo = createPlayer("Player 2", "O");
+
+
 /* GAME CONTROLLER SECTION */
 
 let gameOver = false;
@@ -30,50 +41,41 @@ function switchPlayer() {
 
 
 function playerTurn(index) {
+    if (gameOver) return;
 
-    Is gameOver true?
+    if (gameBoard[index] !== "") return;
+    
+    setSquare(index, currentPlayer.token);
+    updateSquareUI(index, currentPlayer.token);
 
-    Yes → return
+    for (let pattern of winningPatterns) {
+        let a = pattern[0];
+        let b = pattern[1];
+        let c = pattern[2];
 
-    No → continue
+        if (
+            gameBoard[a] === currentPlayer.token &&
+            gameBoard[b] === currentPlayer.token &&
+            gameBoard[c] === currentPlayer.token
+        ) {
+            gameOver = true;
+            showMessage(`${currentPlayer.name} wins!`);
+            resetBtn.style.display = "block";   // show reset button
+            return;
+        }
+    }
 
-    Is board[index] empty?
+    if (!gameBoard.includes("")) {
+        gameOver = true;
+        showMessage("It's a tie!");
+        resetBtn.style.display = "block";       // show reset button
+        return;
+    }
 
-    No → return
-
-    Yes → place current player's token in board[index]
-
-    Loop through winningPatterns
-
-    If a match →
-
-    gameOver = true
-
-    show winning message
-
-    show reset button
-
-    return
-
-    Check for tie
-
-    If NO empty slots →
-
-    gameOver = true
-
-    show tie message
-
-    show reset button
-
-    return
-
-    No win + no tie
-
-    Switch player
-
-    Return (turn ends)
-
+    switchPlayer();
+    showMessage(`${currentPlayer.name}'s turn`);
 }
+
 
 /*DISPLAY CONTROLLER SECTION */
 
@@ -84,7 +86,7 @@ const resetBtn = document.getElementById("resetBtn");
 
 //Event Listeners
 
-square.forEach(cell => {
+squares.forEach(cell => {
     cell.addEventListener('click', () => {
         let index = cell.dataset.index;
         playerTurn(index);
@@ -101,22 +103,14 @@ resetBtn.addEventListener
 
 function updateSquareUI(index, token) {
     squares.dataset.index === index;
-    squares.dataset.index.textContent = token;
+    squares[index].textContent = token;
 }
 
 function showMessage(text) {
-    messageArea.textContent = ""
+    messageArea.textContent = text
 }
 
 function clearBoardUI() {
-    squares.textContent = "";
+    squares.forEach(cell => cell.textContent = "");
+
 }
-
-/* PLAYER SECTION */
-
-const createPlayer = (name, token) => {
-    return {name, token};
-}
-
-const playerOne = createPlayer("Player 1", "X");
-const playerTwo = createPlayer("Player 2", "O");
