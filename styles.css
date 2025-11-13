@@ -50,12 +50,13 @@ header p {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-
+    transition: background-color 0.2s ease, transform 0.1s ease;
     outline: none;
 }
 
 .square:hover {
     background: #e8e8e8;
+    transform: translateY(-2px);
 }
 
 .square:focus {
@@ -63,10 +64,11 @@ header p {
     outline-offset: -3px;
 }
 
+
 /* ===== MESSAGE AREA ===== */
 #messages {
     font-size: 1.4rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     min-height: 2rem; 
     color: #dfdede;
 }
@@ -92,7 +94,7 @@ header p {
 }
 
 #resetBtn:hover {
-    background: #555;
+    background: #3b4f56;
     transform: translateY(-5px);
 }
 
