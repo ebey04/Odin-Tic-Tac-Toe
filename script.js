@@ -79,7 +79,7 @@ function playerTurn(index) {
 
 /*DISPLAY CONTROLLER SECTION */
 
-const gameboard = document.getElementById("gameboard");
+const boardGame = document.getElementById("gameboard");
 const squares = document.querySelectorAll('.square');
 const messageArea = document.getElementById("messages");
 const resetBtn = document.getElementById("resetBtn");
