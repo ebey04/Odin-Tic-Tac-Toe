@@ -12,16 +12,17 @@
     </header>
     
 
-    <section id="gameboard">
-        <div data-index="0" class="square"></div>
-        <div data-index="1" class="square"></div>
-        <div data-index="2" class="square"></div>
-        <div data-index="3" class="square"></div>
-        <div data-index="4" class="square"></div>
-        <div data-index="5" class="square"></div>
-        <div data-index="6" class="square"></div>
-        <div data-index="7" class="square"></div>
-        <div data-index="8" class="square"></div>
+    <section id="gameboard" role="grid" aria-label="Tic Tac Toe Board" aria-rowcount="3"
+    aria-colcount="3">
+        <div data-index="0" class="square" role="gridcell" tabindex="0"></div>
+        <div data-index="1" class="square" role="gridcell" tabindex="0"></div>
+        <div data-index="2" class="square" role="gridcell" tabindex="0"></div>
+        <div data-index="3" class="square" role="gridcell" tabindex="0"></div>
+        <div data-index="4" class="square" role="gridcell" tabindex="0"></div>
+        <div data-index="5" class="square" role="gridcell" tabindex="0"></div>
+        <div data-index="6" class="square" role="gridcell" tabindex="0"></div>
+        <div data-index="7" class="square" role="gridcell" tabindex="0"></div>
+        <div data-index="8" class="square" role="gridcell" tabindex="0"></div>
     </section>
 
     <section id="messages" aria-live="polite"></section>
