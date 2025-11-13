@@ -60,7 +60,7 @@ function playerTurn(index) {
         ) {
             gameOver = true;
             showMessage(`${currentPlayer.name} wins!`);
-            resetBtn.style.display = "block";   // show reset button
+            showResetButton();
             return;
         }
     }
@@ -68,7 +68,7 @@ function playerTurn(index) {
     if (!gameBoard.includes("")) {
         gameOver = true;
         showMessage("It's a tie!");
-        resetBtn.style.display = "block";       // show reset button
+        showResetButton();
         return;
     }
 
