@@ -19,8 +19,15 @@ function resetBoard() {
 /* GAME CONTROLLER SECTION */
 
 let gameOver = false;
+let currentPlayer = playerOne;
+
 
 const winningPatterns = [[0,1,2], [0,3,6], [0,4,8], [1,4,7], [2,4,6], [2,5,8], [3,4,5,] [6,7,8]];
+
+function switchPlayer() {
+    currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
+}
+
 
 function playerTurn(index) {
 
@@ -107,10 +114,9 @@ function clearBoardUI() {
 
 /* PLAYER SECTION */
 
-// player factory to create player objects (2) - name, token
-
 const createPlayer = (name, token) => {
     return {name, token};
 }
 
-let currentPlayer = playerOne; 
+const playerOne = createPlayer("Player 1", "X");
+const playerTwo = createPlayer("Player 2", "O");
