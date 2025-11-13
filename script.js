@@ -6,6 +6,10 @@ function getSquare(index) {
     return gameBoard[index];
 }
 
+function setSquare(index, token) {
+    gameBoard[index] = token;
+}
+
 /* GAME CONTROLLER SECTION */
 
 let gameOver = false;
