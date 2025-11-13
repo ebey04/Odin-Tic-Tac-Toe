@@ -59,7 +59,7 @@ header p {
 }
 
 .square:focus {
-    outline: 3px solid #24373D;
+    outline: 3px solid #0abdf4;
     outline-offset: -3px;
 }
 
