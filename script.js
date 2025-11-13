@@ -101,6 +101,14 @@ resetBtn.addEventListener
 
 //Update visuals
 
+function showResetButton() {
+    resetBtn.classList.add('visible');
+}
+
+function hideResetButton() {
+    resetBtn.classList.remove('visible');
+}
+
 function updateSquareUI(index, token) {
     squares[index].textContent = token;
 }
