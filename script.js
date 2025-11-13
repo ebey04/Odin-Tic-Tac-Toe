@@ -84,7 +84,23 @@ square.forEach(cell => {
     });
 });
 
+resetBtn.addEventListener
 
 //Send index to Game Controller Section 
 
+
+
 //Update visuals
+
+function updateSquareUI(index, token) {
+    squares.dataset.index === index;
+    squares.dataset.index.textContent = token;
+}
+
+function showMessage(text) {
+    messageArea.textContent = ""
+}
+
+function clearBoardUI() {
+    squares.textContent = "";
+}
