@@ -69,3 +69,11 @@ function playerTurn(index) {
 }
 
 /*DISPLAY CONTROLLER SECTION */
+
+//Pull in HTML elements
+
+//Event Listeners
+
+//Send index to Game Controller Section 
+
+//Update visuals
