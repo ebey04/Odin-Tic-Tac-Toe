@@ -25,12 +25,19 @@ const GameBoard = (function() {
 
 /* PLAYER SECTION */
 
-const createPlayer = (name, token) => {
-    return {name, token};
-}
+const Player = (function() {
 
-const playerOne = createPlayer("Player 1", "X");
-const playerTwo = createPlayer("Player 2", "O");
+    const createPlayer = (name, token) => ({ name, token });
+
+    const playerOne = createPlayer("Player 1", "X");
+    const playerTwo = createPlayer("Player 2", "O");
+
+    return {
+        playerOne,
+        playerTwo
+    };
+
+})();
 
 
 /* GAME CONTROLLER SECTION */
