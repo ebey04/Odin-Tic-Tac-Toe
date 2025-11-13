@@ -1,6 +1,7 @@
 /* GAMEBOARD SECTION */
 
-let gameBoard = [];
+let gameBoard = ["", "", "", "", "", "", "", "", ""]
+;
 
 function getSquare(index) {
     return gameBoard[index];
@@ -8,6 +9,11 @@ function getSquare(index) {
 
 function setSquare(index, token) {
     gameBoard[index] = token;
+}
+
+function resetBoard() {
+    gameBoard = ["", "", "", "", "", "", "", "", ""]
+;
 }
 
 /* GAME CONTROLLER SECTION */
