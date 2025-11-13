@@ -1,20 +1,26 @@
 /* GAMEBOARD SECTION */
 
-let gameBoard = ["", "", "", "", "", "", "", "", ""]
-;
+const GameBoard = (function() {
+    let gameBoard = ["","",""];
+    
+    function setSquare(index, token) {
+        gameBoard[index] = token;
+    }
 
-function getSquare(index) {
-    return gameBoard[index];
-}
+    function getSquare(index) {
+        return gameBoard[index];
+    }
 
-function setSquare(index, token) {
-    gameBoard[index] = token;
-}
+    function resetBoard() {
+        gameBoard = ["","",""];
+    }
 
-function resetBoard() {
-    gameBoard = ["", "", "", "", "", "", "", "", ""]
-;
-}
+    return {
+        setSquare,
+        getSquare,
+        resetBoard
+    };
+})();
 
 
 /* PLAYER SECTION */
