@@ -44,7 +44,7 @@ function playerTurn(index) {
     if (gameOver) return;
 
     if (gameBoard[index] !== "") return;
-    
+
     setSquare(index, currentPlayer.token);
     updateSquareUI(index, currentPlayer.token);
 
@@ -102,12 +102,12 @@ resetBtn.addEventListener
 //Update visuals
 
 function updateSquareUI(index, token) {
-    squares.dataset.index === index;
     squares[index].textContent = token;
 }
 
+
 function showMessage(text) {
-    messageArea.textContent = text
+    messageArea.textContent = text;
 }
 
 function clearBoardUI() {

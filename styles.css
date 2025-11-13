@@ -1,0 +1,7 @@
+#resetBtn {
+    display: none;
+}
+
+#resetBtn.visible {
+    display: block;
+}
